@@ -1,0 +1,115 @@
+.pxo-topbar {
+  border-radius: var(--pxo-radius-l) !important;
+  background: linear-gradient(180deg, rgba(7, 8, 12, 0.72), rgba(7, 8, 12, 0)) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transition: background var(--pxo-med) var(--pxo-ease);
+}
+.pxo-topbar > * { background-color: transparent; }
+.pxo-topbar.pxo-scrolled {
+  background: var(--pxo-glass-strong) !important;
+  box-shadow: 0 1px 0 var(--pxo-line), 0 12px 30px -18px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Logo → wordmark */
+%NavBar-logoContainer svg,
+%NavBar-logoContainer img { display: none !important; }
+.pxo-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font: 800 23px/1 var(--pxo-font);
+  letter-spacing: -0.045em;
+  color: var(--pxo-fg);
+}
+.pxo-wordmark-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pxo-grad);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--pxo-a2) 80%, transparent);
+}
+
+/* Search */
+%UniversalSearch-searchInputContainer {
+  max-width: 560px;
+  min-width: 0;
+  flex-shrink: 1;
+  margin-right: auto;
+}
+%UniversalSearch-searchInputContainer > div:first-child {
+  min-width: 0;
+  max-width: 100%;
+}
+%UniversalSearch-searchInputContainer > div,
+#quickSearchInput {
+  border-radius: 99px !important;
+}
+%UniversalSearch-searchInputContainer > div:first-child {
+  background: rgba(255, 255, 255, 0.055) !important;
+  border: 1px solid var(--pxo-line) !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), border-color var(--pxo-fast) var(--pxo-ease),
+    box-shadow var(--pxo-med) var(--pxo-ease);
+}
+%UniversalSearch-searchInputContainer > div:first-child:focus-within {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-color: color-mix(in srgb, var(--pxo-a3) 60%, transparent) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--pxo-a3) 18%, transparent);
+}
+#quickSearchInput {
+  background: transparent !important;
+  color: var(--pxo-fg) !important;
+  font: 500 14px var(--pxo-font) !important;
+}
+/* The pill shows focus (focus-within above); no second ring on the input. */
+#quickSearchInput:focus,
+#quickSearchInput:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+#quickSearchInput::placeholder { color: var(--pxo-fg-3); }
+
+/* Right-hand buttons */
+.pxo-topbar button {
+  border-radius: 99px;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease);
+}
+.pxo-topbar button:hover { background: rgba(255, 255, 255, 0.08); }
+.pxo-topbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 6px;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: var(--pxo-fg-2);
+  cursor: pointer;
+}
+.pxo-topbar-btn:hover { color: var(--pxo-fg); }
+%NotificationBadge-badge {
+  background: var(--pxo-grad) !important;
+  color: var(--pxo-on-a1) !important;
+  font-weight: 700;
+}
+
+/* Narrow windows: Plex's right-hand buttons are 56px wide; with the extra
+   settings button the account menu would be pushed off-screen. */
+@media (max-width: 720px) {
+  .pxo-topbar button,
+  .pxo-topbar a[href] {
+    min-width: 36px;
+  }
+  %NavBarActivityButton-container,
+  %NavBarActivityButton-container + a,
+  %NavBarActivityButton-container ~ button:not([data-testid="navbarAccountMenuTrigger"]) {
+    width: 40px !important;
+  }
+  .pxo-topbar-btn {
+    width: 36px;
+    margin-right: 0;
+  }
+  .pxo-wordmark { font-size: 19px; }
+}

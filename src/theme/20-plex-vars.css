@@ -1,0 +1,62 @@
+/* Plex Web reads its colours, fonts and radii from these variables on
+   .react-chroma-dark; remapping them re-themes the parts this script does not
+   style one by one (menus, modals, settings pages, buttons). */
+html body.react-chroma-dark {
+  --color-brand-accent: var(--pxo-a1);
+  --color-static-yellow: var(--pxo-a1);
+  --color-text-accent: var(--pxo-a1);
+  --color-background-accent: var(--pxo-a1);
+  --color-background-accent-focus: color-mix(in srgb, var(--pxo-a1) 82%, white);
+  --color-text-on-accent: var(--pxo-on-a1);
+  --color-keyboard-focus: var(--pxo-a3);
+  --color-highlight-control-focus: color-mix(in srgb, var(--pxo-a3) 80%, transparent);
+  --color-static-perrywinkle: var(--pxo-a3);
+
+  --color-text-primary: var(--pxo-fg);
+  --color-text-default: color-mix(in srgb, var(--pxo-fg) 86%, transparent);
+  --color-text-muted: var(--pxo-fg-3);
+
+  --color-overlay-background: var(--pxo-ink-1);
+  --color-background-modal: var(--pxo-ink-2);
+  --color-menu: var(--pxo-ink-2);
+  --color-background-backdrop: rgba(4, 5, 8, 0.78);
+  --color-background-card: rgba(255, 255, 255, 0.03);
+  --color-background-control: rgba(255, 255, 255, 0.06);
+  --color-background-control-focus: rgba(255, 255, 255, 0.12);
+  --color-confirm-highlight: var(--pxo-good);
+  --color-highlight-success: var(--pxo-good);
+  --color-static-green: var(--pxo-good);
+
+  --color-ultrablur-tl: var(--pxo-ink-1);
+  --color-ultrablur-tr: var(--pxo-ink-1);
+  --color-ultrablur-br: var(--pxo-ink-2);
+  --color-ultrablur-bl: var(--pxo-ink-1);
+
+  --border-radius-s: 6px;
+  --border-radius-m: var(--pxo-radius);
+  --border-radius-l: var(--pxo-radius-l);
+  --shadow-high: var(--pxo-shadow-1);
+  --shadow-ultra-high: var(--pxo-shadow-2);
+
+  --font-display-1-font-family: var(--pxo-font);
+  --font-display-2-font-family: var(--pxo-font);
+  --font-display-3-font-family: var(--pxo-font);
+  --font-display-copy-font-family: var(--pxo-font);
+  --font-heading-1-font-family: var(--pxo-font);
+  --font-heading-2-font-family: var(--pxo-font);
+  --font-heading-3-font-family: var(--pxo-font);
+  --font-heading-4-font-family: var(--pxo-font);
+  --font-body-1-font-family: var(--pxo-font);
+  --font-body-2-font-family: var(--pxo-font);
+  --font-body-3-font-family: var(--pxo-font);
+  --font-button-1-font-family: var(--pxo-font);
+  --font-button-2-font-family: var(--pxo-font);
+  --font-caption-font-family: var(--pxo-font);
+  --font-tiny-font-family: var(--pxo-font);
+  --font-display-1-font-weight: 800;
+  --font-display-2-font-weight: 800;
+  --font-display-1-letter-spacing: -0.03em;
+  --font-display-2-letter-spacing: -0.025em;
+  --font-heading-1-letter-spacing: -0.02em;
+  --font-heading-2-letter-spacing: -0.015em;
+}

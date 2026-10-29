@@ -1,0 +1,110 @@
+/* Player controls: the bottom bar shown while something plays in the
+   background (mini player) and the control bar of the full-screen player.
+   Both use the same SeekBar / PlayerIconButton components. */
+
+/* Mini player: a floating glass bar instead of Plex's grey strip. */
+%Player-miniPlayerContainer {
+  background: transparent !important;
+}
+%Player-miniPlayerContainer %BottomBar-bottomBar {
+  /* Plex positions it relative, full width; inset it with margins. */
+  width: auto !important;
+  margin: 0 12px;
+  top: -10px;
+  border: 1px solid var(--pxo-line-strong);
+  border-radius: var(--pxo-radius-l);
+  /* No backdrop-filter or transform here: either makes the bar a stacking
+     context, which drops the poster's "Expand Player" button (z-index 2)
+     under the preview video's wrapper (z-index 1). */
+  background: rgba(14, 16, 22, 0.94) !important;
+  box-shadow: 0 -10px 40px -18px rgba(0, 0, 0, 0.9), var(--pxo-shadow-2);
+}
+%Player-miniPlayerContainer video,
+%MiniPlayerPoster-miniPlayerPoster,
+%MiniPlayerPoster-card,
+%MiniPlayerPoster-expandButton {
+  border-radius: var(--pxo-radius) !important;
+  overflow: hidden;
+}
+/* The preview video sits on top of the poster's "Expand Player" button; keep
+   it exactly over the button (bar inset 12px, raised 10px) and let clicks
+   through to the button. */
+%Player-miniPlayerContainer video {
+  left: 13px !important;
+  bottom: 11px !important;
+  pointer-events: none;
+}
+%MiniPlayerPoster-expandButton {
+  transition: background var(--pxo-fast) var(--pxo-ease) !important;
+}
+%MiniPlayerPoster-expandButton:not(:hover) { background: transparent !important; }
+
+/* Title / year / time */
+%PlayerControlsMetadata-container * { font-family: var(--pxo-font) !important; }
+%PlayerControlsMetadata-container [data-testid="metadataTitleLink"],
+%PlayerControlsMetadata-container %MetadataPosterTitle-title:first-child {
+  color: var(--pxo-fg) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+%MetadataPosterTitle-isSecondary,
+%DurationRemaining-container {
+  color: var(--pxo-fg-3) !important;
+  font-variant-numeric: tabular-nums;
+}
+%MediaInfo-info {
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Seek bar */
+/* Plex sizes and moves these with transforms (scaleX on the fills, translate
+   on the track), so no transitions or radii on them: both distort. */
+%SeekBar-seekBarTrack,
+%Slider-track {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+%SeekBar-seekBarBuffer { background: rgba(255, 255, 255, 0.16) !important; }
+%SeekBar-seekBarFill,
+%VolumeSlider-fill {
+  background: var(--pxo-grad) !important;
+}
+%SeekBar-seekBar %Slider-thumb,
+%VolumeSlider-slider %Slider-thumb {
+  background: #fff !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--pxo-a2) 35%, transparent), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Buttons */
+%PlayerIconButton-playerButton {
+  border-radius: 50% !important;
+  color: var(--pxo-fg-2) !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease),
+    transform var(--pxo-fast) var(--pxo-ease) !important;
+}
+%PlayerIconButton-playerButton:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+  color: var(--pxo-fg) !important;
+}
+%PlayerIconButton-playerButton:active { transform: scale(0.92); }
+%PlayerIconButton-playerButton%IconButton-isDisabled { opacity: 0.3; }
+/* Play / pause: gradient disc */
+%PlayerIconButton-isPrimary {
+  background: var(--pxo-grad) !important;
+  color: var(--pxo-on-a1) !important;
+  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--pxo-a2) 80%, transparent);
+  transform: scale(1.25);
+}
+%PlayerIconButton-isPrimary:hover {
+  background: var(--pxo-grad) !important;
+  color: var(--pxo-on-a1) !important;
+  filter: brightness(1.08);
+}
+%PlayerIconButton-isPrimary:active { transform: scale(1.15); }
+%PlayerControls-buttonGroupCenter { gap: 6px; }
+
+/* Full-screen player: softer gradient behind the control bar. */
+%Player-fullPlayerContainer %BottomBar-bottomBar,
+%FullPlayerTopControls-topControls {
+  font-family: var(--pxo-font) !important;
+}

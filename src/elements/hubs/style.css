@@ -1,0 +1,94 @@
+/* Horizontal rows ("hubs") on home, library and details pages. */
+%VirtualHubScroller-hub {
+  position: relative;
+}
+/* Opacity only: Plex's virtual lists track row positions, and a moving
+   transform makes them recompute on every frame of the animation. */
+%VirtualHubScroller-hub.pxo-in {
+  animation: pxo-fade var(--pxo-slow) var(--pxo-ease) both;
+  animation-delay: calc(var(--pxo-i, 0) * 60ms);
+}
+
+%VirtualHubScroller-hubHeader {
+  align-items: flex-end;
+  margin-bottom: 4px;
+}
+%VirtualHubScroller-hubHeader [data-testid="hubTitle"],
+%VirtualHubScroller-hubHeader h2 {
+  font: 700 21px/1.2 var(--pxo-font) !important;
+  letter-spacing: -0.02em !important;
+  color: var(--pxo-fg) !important;
+}
+%VirtualHubScroller-hubHeader a:hover [data-testid="hubTitle"],
+%VirtualHubScroller-hubHeader a[data-testid="hubTitle"]:hover {
+  background: var(--pxo-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Prev / next page: round glass buttons. */
+%VirtualHubScroller-hubActions { gap: 6px; }
+%VirtualHubScroller-hubScrollButton {
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--pxo-fg) !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), opacity var(--pxo-fast) var(--pxo-ease);
+}
+%VirtualHubScroller-hubScrollButton svg { width: 14px !important; height: 14px !important; }
+%VirtualHubScroller-hubScrollButton:hover { background: rgba(255, 255, 255, 0.14) !important; }
+%VirtualHubScroller-hubScrollButton%IconButton-isDisabled { opacity: 0.25; }
+
+/* Page header (breadcrumb + pivot tabs) */
+%PageHeader-pageHeader {
+  background: transparent !important;
+}
+%PageHeaderBreadcrumbButton-link,
+%PageHeaderTitle-title {
+  font: 700 18px var(--pxo-font) !important;
+  letter-spacing: -0.015em;
+}
+%PageHeaderTitle-detail { color: var(--pxo-fg-3) !important; }
+%PivotTabsPageHeaderCenter-pageHeaderCenter {
+  gap: 2px;
+}
+%TabButton-button {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  align-self: center;
+  height: 34px !important;
+  line-height: 34px !important;
+  margin: 0 2px;
+  padding: 0 16px !important;
+  border-radius: 99px !important;
+  color: var(--pxo-fg-2) !important;
+  font: 600 14px var(--pxo-font) !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease);
+}
+%TabButton-button::after { display: none !important; }
+%TabButton-button:hover { color: var(--pxo-fg) !important; background: rgba(255, 255, 255, 0.06); }
+%TabButton-button%TabButton-selected {
+  color: var(--pxo-fg) !important;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px var(--pxo-line-strong);
+}
+%TabButton-button%TabButton-selected > * { border-bottom-color: transparent !important; }
+
+/* Poster size slider */
+%MetadataListStylesMenu-slider %Slider-track { background: var(--pxo-ink-4) !important; }
+%Slider-thumb {
+  background: var(--pxo-fg) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--pxo-a3) 30%, transparent);
+}
+
+/* Detail / list view rows in libraries */
+%ListRow-row {
+  border-radius: var(--pxo-radius);
+  transition: background var(--pxo-fast) var(--pxo-ease);
+}
+%ListRow-row:hover { background: rgba(255, 255, 255, 0.05) !important; }
+%MetadataDetailsRow-title { font-weight: 600 !important; letter-spacing: -0.01em; }

@@ -1,0 +1,17 @@
+{
+  "name": "plex-overhaul",
+  "version": "1.1.1",
+  "private": true,
+  "description": "Userscript that replaces the look and layout of Plex Web.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "watch": "node tools/build.mjs --watch"
+  },
+  "license": "MIT",
+  "author": "kpganon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kpg-anon/PlexOverhaul.git"
+  }
+}

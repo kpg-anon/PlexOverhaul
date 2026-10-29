@@ -1,0 +1,74 @@
+html body,
+html body #plex {
+  background: var(--pxo-ink-0);
+  color: var(--pxo-fg);
+  font-family: var(--pxo-font);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--pxo-a3) 45%, transparent);
+  color: #fff;
+}
+
+/* Scrollbars: thin and ink-coloured. scrollbar-color inherits, so it is set
+   once on <html>; scrollbar-width does not, so it goes on Plex's scroll
+   containers only. No universal (*) rules: those are matched against every
+   element on every style recalc. */
+html {
+  scrollbar-color: var(--pxo-ink-4) transparent;
+}
+%Scroller-scroller,
+.dark-scrollbar,
+.pxo-panel {
+  scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 2px solid var(--pxo-a3);
+  outline-offset: 2px;
+}
+
+/* Shared pieces used by injected elements. */
+.pxo-icon { display: inline-flex; line-height: 0; }
+
+.pxo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--pxo-line-strong);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--pxo-fg);
+  font: 600 15px/1 var(--pxo-font);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--pxo-fast) var(--pxo-ease), transform var(--pxo-fast) var(--pxo-ease),
+    border-color var(--pxo-fast) var(--pxo-ease), box-shadow var(--pxo-med) var(--pxo-ease);
+}
+.pxo-btn:hover { background: rgba(255, 255, 255, 0.13); border-color: rgba(255, 255, 255, 0.24); }
+.pxo-btn:active { transform: scale(0.97); }
+.pxo-btn--primary {
+  border-color: transparent;
+  background: var(--pxo-grad);
+  color: var(--pxo-on-a1);
+  box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--pxo-a2) 70%, transparent);
+}
+.pxo-btn--primary:hover {
+  background: var(--pxo-grad);
+  filter: brightness(1.07);
+  box-shadow: 0 14px 36px -10px color-mix(in srgb, var(--pxo-a2) 85%, transparent);
+}
+
+@keyframes pxo-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pxo-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

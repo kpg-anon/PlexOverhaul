@@ -1,0 +1,77 @@
+/* Afterglow: blue-black ink surfaces, one three-stop accent gradient.
+   Roles (kept from comfy-dark): --pxo-a1 = primary action (play, progress),
+   --pxo-a3 = active / selected / focus, --pxo-good = watched / success,
+   --pxo-bad = destructive. */
+:root {
+  --pxo-ink-0: #07080c;
+  --pxo-ink-1: #0c0e14;
+  --pxo-ink-2: #12151d;
+  --pxo-ink-3: #191d28;
+  --pxo-ink-4: #222735;
+  --pxo-line: rgba(168, 180, 225, 0.09);
+  --pxo-line-strong: rgba(168, 180, 225, 0.17);
+
+  --pxo-fg: #eef0f6;
+  --pxo-fg-2: #b3b9ca;
+  --pxo-fg-3: #737b90;
+
+  --pxo-a1: #ffa66e;
+  --pxo-a2: #ff5f8a;
+  --pxo-a3: #8d7dff;
+  --pxo-on-a1: #1a0e08;
+  --pxo-good: #5fe0b4;
+  --pxo-bad: #ff5f6e;
+
+  --pxo-grad: linear-gradient(115deg, var(--pxo-a1), var(--pxo-a2) 55%, var(--pxo-a3));
+  --pxo-grad-soft: linear-gradient(115deg,
+    color-mix(in srgb, var(--pxo-a1) 22%, transparent),
+    color-mix(in srgb, var(--pxo-a3) 22%, transparent));
+
+  --pxo-glass: rgba(12, 14, 20, 0.66);
+  --pxo-glass-strong: rgba(12, 14, 20, 0.86);
+
+  --pxo-radius-l: 18px;
+  --pxo-radius: 12px;
+  --pxo-radius-s: 8px;
+
+  --pxo-shadow-1: 0 6px 18px -8px rgba(0, 0, 0, 0.7);
+  --pxo-shadow-2: 0 24px 50px -20px rgba(0, 0, 0, 0.85);
+
+  --pxo-ease: cubic-bezier(0.22, 0.75, 0.2, 1);
+  --pxo-fast: 160ms;
+  --pxo-med: 280ms;
+  --pxo-slow: 640ms;
+
+  --pxo-font: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --pxo-rail: 76px;
+  --pxo-topbar-h: 64px;
+}
+
+:root[data-pxo-accent="aurora"] {
+  --pxo-a1: #5fe0b4;
+  --pxo-a2: #4cc3ff;
+  --pxo-a3: #8d7dff;
+  --pxo-on-a1: #04140e;
+}
+:root[data-pxo-accent="ember"] {
+  --pxo-a1: #ffc65c;
+  --pxo-a2: #ff7a45;
+  --pxo-a3: #ff3f6c;
+  --pxo-on-a1: #1a1004;
+}
+:root[data-pxo-accent="glacier"] {
+  --pxo-a1: #e6ebf7;
+  --pxo-a2: #a8b6d9;
+  --pxo-a3: #7f8dff;
+  --pxo-on-a1: #0c0f18;
+}
+
+/* Reduced motion: our own durations collapse to ~0. Plex's animations are
+   stopped by a separate <style> that core/20-settings.js adds only while
+   reduced motion is on (a universal rule here would be checked against every
+   element on every style recalc, even with reduced motion off). */
+:root[data-pxo-reduce="1"] {
+  --pxo-fast: 1ms;
+  --pxo-med: 1ms;
+  --pxo-slow: 1ms;
+}

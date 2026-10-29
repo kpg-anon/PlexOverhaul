@@ -1,0 +1,171 @@
+/* Plex's older Bootstrap forms: settings pages (#!/settings/...) and legacy
+   dialogs such as Edit metadata (.modal, appended to <body>). Plain class
+   names, stable across builds. */
+#plex select,
+#plex .form-control,
+.modal select,
+.modal .form-control,
+#plex input[type="text"]:not(#quickSearchInput),
+#plex input[type="number"],
+#plex input[type="password"],
+#plex input[type="email"],
+#plex textarea {
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: var(--pxo-radius-s) !important;
+  background-color: var(--pxo-ink-2) !important;
+  color: var(--pxo-fg) !important;
+  font: 500 14px var(--pxo-font) !important;
+  box-shadow: none !important;
+  transition: border-color var(--pxo-fast) var(--pxo-ease), box-shadow var(--pxo-fast) var(--pxo-ease);
+}
+#plex select:focus,
+#plex .form-control:focus,
+.modal select:focus,
+.modal .form-control:focus,
+#plex input:focus:not(#quickSearchInput),
+#plex textarea:focus {
+  outline: none;
+  border-color: var(--pxo-a3) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pxo-a3) 22%, transparent) !important;
+}
+#plex select option { background: var(--pxo-ink-2); color: var(--pxo-fg); }
+
+#plex input[type="checkbox"],
+#plex input[type="radio"],
+.modal input[type="checkbox"],
+.modal input[type="radio"] {
+  accent-color: var(--pxo-a3);
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: -2px;
+}
+input[type="range"] { accent-color: var(--pxo-a1); }
+
+.form-group .control-label,
+.form-group label { color: var(--pxo-fg) !important; font-family: var(--pxo-font) !important; }
+.help-block { color: var(--pxo-fg-3) !important; }
+.help-block a, .form-group a { color: var(--pxo-a1) !important; }
+
+/* Buttons */
+#plex .btn,
+.modal .btn {
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: 99px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: var(--pxo-fg) !important;
+  font: 600 13px var(--pxo-font) !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), filter var(--pxo-fast) var(--pxo-ease);
+}
+#plex .btn:hover,
+.modal .btn:hover { background: rgba(255, 255, 255, 0.13) !important; }
+#plex .btn-lg, .modal .btn-lg { padding: 10px 22px !important; font-size: 15px !important; }
+#plex .btn-primary,
+.modal .btn-primary {
+  border-color: transparent !important;
+  background: var(--pxo-grad) !important;
+  color: var(--pxo-on-a1) !important;
+}
+#plex .btn-primary:hover,
+.modal .btn-primary:hover { background: var(--pxo-grad) !important; filter: brightness(1.07); }
+#plex .btn.disabled,
+#plex .btn:disabled,
+.modal .btn.disabled,
+.modal .btn:disabled { opacity: 0.45; filter: saturate(0.6); }
+#plex .btn-danger,
+.modal .btn-danger {
+  border-color: transparent !important;
+  background: color-mix(in srgb, var(--pxo-bad) 75%, var(--pxo-ink-2)) !important;
+  color: #fff !important;
+}
+
+/* Section dividers and panels on settings pages */
+#plex hr { border-color: var(--pxo-line) !important; }
+#plex .panel,
+#plex .well,
+#plex .settings-advanced-container {
+  border: 1px solid var(--pxo-line) !important;
+  border-radius: var(--pxo-radius) !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+}
+
+/* Legacy Bootstrap modal frame (Edit metadata, Match, Refresh dialogs) */
+.modal-backdrop.in { opacity: 1 !important; background: rgba(4, 5, 8, 0.72) !important; }
+.modal:not(.user-select-modal) .modal-content {
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: var(--pxo-radius-l) !important;
+  background: var(--pxo-ink-2) !important;
+  box-shadow: var(--pxo-shadow-2) !important;
+  overflow: hidden;
+  font-family: var(--pxo-font);
+}
+.modal:not(.user-select-modal) .modal-header,
+.modal:not(.user-select-modal) .modal-footer {
+  border-color: var(--pxo-line) !important;
+  background: var(--pxo-ink-1) !important;
+}
+.modal:not(.user-select-modal) .modal-title {
+  color: var(--pxo-fg) !important;
+  font: 700 20px var(--pxo-font) !important;
+  letter-spacing: -0.015em;
+}
+.modal .modal-icon { color: var(--pxo-a1) !important; }
+.modal .close { color: var(--pxo-fg-2) !important; opacity: 1 !important; text-shadow: none !important; }
+.modal .close:hover { color: var(--pxo-fg) !important; }
+.modal .modal-nav-pane { background: var(--pxo-ink-1) !important; border-color: var(--pxo-line) !important; }
+.modal .change-pane-btn {
+  margin: 2px 6px;
+  white-space: nowrap;
+  border-radius: var(--pxo-radius-s);
+  color: var(--pxo-fg-2) !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease);
+}
+.modal .change-pane-btn:hover { background: rgba(255, 255, 255, 0.06) !important; color: var(--pxo-fg) !important; }
+.modal .change-pane-btn.selected {
+  background: var(--pxo-grad-soft) !important;
+  color: var(--pxo-fg) !important;
+}
+.modal .change-pane-btn.selected .modal-nav-icon { color: var(--pxo-a1) !important; }
+.modal .input-group-addon,
+.modal .input-group-btn .btn {
+  border-color: var(--pxo-line-strong) !important;
+  background: var(--pxo-ink-3) !important;
+  color: var(--pxo-a1) !important;
+}
+.modal .selectize-input {
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: var(--pxo-radius-s) !important;
+  background: var(--pxo-ink-2) !important;
+  color: var(--pxo-fg) !important;
+  box-shadow: none !important;
+}
+/* Selectize wraps a bare <input>; the wrapper has the border, the input none. */
+.modal .selectize-input input,
+#plex .selectize-input input {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+/* .selectize-control also carries .form-control; only its inner
+   .selectize-input should draw the field. */
+.modal .selectize-control.form-control,
+#plex .selectize-control.form-control {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.modal .selectize-dropdown,
+#plex .selectize-dropdown {
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: var(--pxo-radius-s) !important;
+  background: var(--pxo-ink-2) !important;
+  box-shadow: var(--pxo-shadow-1) !important;
+}
+.selectize-dropdown .active { background: rgba(255, 255, 255, 0.08) !important; color: var(--pxo-fg) !important; }

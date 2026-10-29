@@ -1,0 +1,218 @@
+/* Plex Home profile picker and PIN entry ("Select User" / "Enter PIN").
+   These use Plex's older Bootstrap markup, so the class names are stable. */
+%UserSelectModal-darkModalBackdrop {
+  background:
+    radial-gradient(60% 50% at 18% 20%, color-mix(in srgb, var(--pxo-a1) 16%, transparent), transparent 70%),
+    radial-gradient(55% 55% at 85% 85%, color-mix(in srgb, var(--pxo-a3) 18%, transparent), transparent 70%),
+    var(--pxo-ink-0) !important;
+}
+
+.user-select-modal .modal-dialog {
+  position: fixed !important;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  margin: 0 !important;
+  animation: pxo-fade-up var(--pxo-slow) var(--pxo-ease) both;
+}
+.user-select-modal .modal-content {
+  width: auto !important;
+  padding: 36px 44px 40px;
+  border: 1px solid var(--pxo-line-strong) !important;
+  border-radius: 28px !important;
+  background: var(--pxo-glass) !important;
+  backdrop-filter: blur(24px) saturate(1.2);
+  box-shadow: var(--pxo-shadow-2) !important;
+  font-family: var(--pxo-font);
+}
+.user-select-modal .modal-header {
+  padding: 0 0 22px !important;
+  border: 0 !important;
+  text-align: center;
+}
+.user-select-modal .modal-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pxo-fg) !important;
+  font: 800 30px/1.1 var(--pxo-font) !important;
+  letter-spacing: -0.03em;
+}
+.user-select-modal .modal-body { padding: 0 !important; }
+
+/* Back button on the PIN step */
+.user-select-modal .back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--pxo-line-strong);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--pxo-fg-2) !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease);
+}
+.user-select-modal .back-btn:hover { background: rgba(255, 255, 255, 0.12); color: var(--pxo-fg) !important; }
+.user-select-modal .back-btn .glyphicon { top: 0; font-size: 14px; }
+
+/* Profile tiles */
+.user-select-list {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.user-select-list-item {
+  float: none !important;
+  margin: 0 !important;
+  list-style: none;
+}
+.user-select-container {
+  display: block;
+  width: 148px !important;
+  height: auto !important;
+  padding: 22px 12px 16px;
+  border-radius: var(--pxo-radius-l) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  box-shadow: inset 0 0 0 1px var(--pxo-line) !important;
+  text-decoration: none !important;
+  transition: background var(--pxo-med) var(--pxo-ease), transform var(--pxo-med) var(--pxo-ease),
+    box-shadow var(--pxo-med) var(--pxo-ease);
+}
+a.user-select-container:hover,
+a.user-select-container:focus-visible {
+  background: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: inset 0 0 0 2px var(--pxo-a3), var(--pxo-shadow-2) !important;
+  transform: translateY(-3px);
+}
+.user-select-top {
+  position: relative;
+  width: auto !important;
+  height: auto !important;
+  background: transparent !important;
+}
+.user-select-top .user-poster {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 92px !important;
+  height: 92px !important;
+  margin: 0 auto;
+  border: 0 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 3px var(--pxo-ink-1), 0 0 0 5px transparent;
+  transition: box-shadow var(--pxo-med) var(--pxo-ease);
+}
+a.user-select-container:hover .user-poster {
+  box-shadow: 0 0 0 3px var(--pxo-ink-1), 0 0 0 5px var(--pxo-a1);
+}
+.user-select-top .user-icon {
+  top: auto !important;
+  bottom: -2px !important;
+  width: 26px !important;
+  height: 26px !important;
+  line-height: 26px !important;
+  border-radius: 50%;
+  background: var(--pxo-ink-3) !important;
+  box-shadow: 0 0 0 2px var(--pxo-ink-1);
+  font-size: 12px !important;
+  text-align: center;
+}
+.user-select-top .protected-icon { left: 18px !important; color: var(--pxo-good) !important; }
+.user-select-top .admin-icon { right: 18px !important; left: auto !important; color: var(--pxo-a1) !important; }
+.user-select-container .add-icon {
+  color: var(--pxo-a1) !important;
+  fill: var(--pxo-a1) !important;
+}
+.user-select-container .caption {
+  height: auto !important;
+  padding: 14px 0 0 !important;
+  background: transparent !important;
+}
+.user-select-container .username {
+  color: var(--pxo-fg) !important;
+  font: 600 15px/1.3 var(--pxo-font) !important;
+  text-align: center;
+}
+.user-select-container .managed-title {
+  color: var(--pxo-fg-3) !important;
+  font: 500 12px var(--pxo-font) !important;
+}
+
+/* PIN step: profile tile on the left, four digit boxes on the right. */
+.user-select-modal-pin-container .modal-body {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.user-select-modal-pin-container .user-select-list { flex: 0 0 auto; }
+.user-select-modal-pin-container .user-select-list.disabled .user-select-container:hover { transform: none; }
+.pin-digit-container {
+  position: relative;
+  display: flex !important;
+  gap: 14px;
+  width: auto !important;
+  margin: 0 !important;
+}
+.pin-digit-container .pin-digit {
+  float: none !important;
+  width: 68px !important;
+  height: 88px !important;
+  margin: 0 !important;
+  border-radius: var(--pxo-radius-l) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: inset 0 0 0 1px var(--pxo-line-strong);
+  transition: background var(--pxo-med) var(--pxo-ease), box-shadow var(--pxo-med) var(--pxo-ease),
+    transform var(--pxo-med) var(--pxo-ease);
+}
+.pin-digit-container .pin-digit.current {
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 0 0 2px var(--pxo-a3), 0 0 0 6px color-mix(in srgb, var(--pxo-a3) 18%, transparent);
+}
+/* Plex writes a "•" into each entered box; hide the glyph and draw a centred
+   gradient dot instead. */
+.pin-digit-container .pin-digit {
+  position: relative;
+  color: transparent !important;
+  font-size: 0 !important;
+}
+.pin-digit-container .pin-digit:not(:empty)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: var(--pxo-grad);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--pxo-a2) 70%, transparent);
+  animation: pxo-pin-pop var(--pxo-med) var(--pxo-ease) both;
+}
+@keyframes pxo-pin-pop {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.pin-forgot-link {
+  position: absolute !important;
+  right: 44px;
+  bottom: 14px;
+  top: auto !important;
+  color: var(--pxo-fg-3) !important;
+  font: 500 13px var(--pxo-font) !important;
+}
+.pin-forgot-link:hover { color: var(--pxo-fg) !important; }
+
+/* Wrong-PIN / error message */
+.user-select-alert-bar {
+  border-radius: var(--pxo-radius) !important;
+  background: color-mix(in srgb, var(--pxo-bad) 18%, var(--pxo-ink-2)) !important;
+  color: var(--pxo-fg) !important;
+  font: 500 14px var(--pxo-font) !important;
+}
+.user-select-modal .modal-alert { position: absolute; top: -64px; left: 0; right: 0; }

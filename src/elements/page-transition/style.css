@@ -1,0 +1,3 @@
+.pxo-enter {
+  animation: pxo-fade var(--pxo-med) var(--pxo-ease) both;
+}

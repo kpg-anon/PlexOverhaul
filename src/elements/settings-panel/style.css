@@ -1,0 +1,137 @@
+.pxo-panel {
+  position: fixed;
+  top: 68px;
+  right: 16px;
+  z-index: 2000;
+  width: min(340px, calc(100vw - 32px));
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding: 8px 18px 18px;
+  border: 1px solid var(--pxo-line-strong);
+  border-radius: var(--pxo-radius-l);
+  background: var(--pxo-glass-strong);
+  backdrop-filter: blur(24px) saturate(1.3);
+  box-shadow: var(--pxo-shadow-2);
+  color: var(--pxo-fg);
+  font: 400 14px var(--pxo-font);
+  transform-origin: top right;
+  animation: pxo-menu-in var(--pxo-med) var(--pxo-ease) both;
+}
+.pxo-panel:focus { outline: none; }
+.pxo-panel.is-closing {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+  transition: opacity 180ms var(--pxo-ease), transform 180ms var(--pxo-ease);
+}
+
+.pxo-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 4px;
+}
+.pxo-panel-head b { font: 800 18px var(--pxo-font); letter-spacing: -0.02em; }
+.pxo-panel-head small { margin-left: 8px; color: var(--pxo-fg-3); font-size: 12px; }
+.pxo-panel-close {
+  display: inline-flex;
+  padding: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--pxo-fg-2);
+  cursor: pointer;
+}
+.pxo-panel-close:hover { background: rgba(255, 255, 255, 0.08); color: var(--pxo-fg); }
+
+.pxo-panel section { padding-top: 14px; }
+.pxo-panel h3 {
+  margin: 0 0 10px;
+  color: var(--pxo-fg-3);
+  font: 600 11px var(--pxo-font);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pxo-swatches { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.pxo-swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--pxo-line);
+  border-radius: var(--pxo-radius-s);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--pxo-fg-2);
+  font: 600 13px var(--pxo-font);
+  cursor: pointer;
+  transition: border-color var(--pxo-fast) var(--pxo-ease), background var(--pxo-fast) var(--pxo-ease);
+}
+.pxo-swatch i { width: 22px; height: 22px; border-radius: 50%; flex: 0 0 auto; }
+.pxo-swatch:hover { background: rgba(255, 255, 255, 0.07); }
+.pxo-swatch[aria-pressed="true"] {
+  border-color: var(--pxo-a3);
+  color: var(--pxo-fg);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.pxo-seg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px var(--pxo-line);
+}
+.pxo-seg-btn {
+  min-width: 0;
+  height: 32px;
+  padding: 0 6px;
+  text-align: center;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: var(--pxo-fg-2);
+  font: 600 12.5px var(--pxo-font);
+  cursor: pointer;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease);
+}
+.pxo-seg-btn[aria-checked="true"] { background: var(--pxo-fg); color: var(--pxo-ink-0); }
+
+.pxo-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid var(--pxo-line);
+  cursor: pointer;
+}
+.pxo-toggle:first-of-type { border-top: 0; }
+.pxo-toggle-text { display: flex; flex-direction: column; gap: 2px; }
+.pxo-toggle-text b { font: 600 14px var(--pxo-font); }
+.pxo-toggle-text small { color: var(--pxo-fg-3); font-size: 12px; line-height: 1.35; }
+.pxo-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.pxo-toggle-track {
+  position: relative;
+  flex: 0 0 40px;
+  height: 24px;
+  border-radius: 99px;
+  background: var(--pxo-ink-4);
+  transition: background var(--pxo-med) var(--pxo-ease);
+}
+.pxo-toggle-track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: transform var(--pxo-med) var(--pxo-ease);
+}
+.pxo-toggle input:checked + .pxo-toggle-track { background: var(--pxo-grad); }
+.pxo-toggle input:checked + .pxo-toggle-track::after { transform: translateX(16px); }
+.pxo-toggle input:focus-visible + .pxo-toggle-track { outline: 2px solid var(--pxo-a3); outline-offset: 2px; }

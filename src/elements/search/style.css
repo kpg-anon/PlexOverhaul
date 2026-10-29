@@ -1,0 +1,29 @@
+/* Search results page (#!/search) and the rows in the search dropdown. */
+%SearchResultListRow-container {
+  position: relative;
+  border-radius: var(--pxo-radius);
+  transition: background var(--pxo-fast) var(--pxo-ease);
+}
+%SearchResultListRow-container:hover,
+%SearchResultListRow-container:focus-within {
+  background: rgba(255, 255, 255, 0.05);
+}
+%SearchResultListRow-container img,
+%SearchResultListRow-container %ImagePoster-flex {
+  border-radius: var(--pxo-radius-s) !important;
+  overflow: hidden;
+}
+%SearchResultLinkUnderlay-underlay,
+%SearchResultCell-overlay {
+  border-radius: var(--pxo-radius) !important;
+}
+%SearchResultItemContentActions-actionLink,
+%SearchResultItemContentActions-toggleLink {
+  border-radius: 50% !important;
+  transition: background var(--pxo-fast) var(--pxo-ease), color var(--pxo-fast) var(--pxo-ease);
+}
+%SearchResultItemContentActions-actionLink:hover,
+%SearchResultItemContentActions-toggleLink:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+}
+%SearchResultsPageHeader-chipsContainer { gap: 8px; }

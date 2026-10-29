@@ -1,0 +1,134 @@
+/* Poster cards: rounded, lift on hover, gradient progress. The cells are
+   positioned by Plex's virtual list, so only the inner parts move. The lift
+   uses the `translate` property, which adds to an element's `transform`:
+   some of these parts (the details-page play button) are centred by Plex
+   with transform: translate(-50%, -50%), which `transform` would replace. */
+%PosterCard-card,
+%MetadataSimplePosterCard-card {
+  border-radius: var(--pxo-radius) !important;
+  overflow: visible !important;
+}
+%MetadataSimplePosterCard-image,
+%PosterCard-card %ImagePoster-flex {
+  border-radius: var(--pxo-radius) !important;
+  overflow: hidden;
+  background-color: var(--pxo-ink-2) !important;
+  box-shadow: var(--pxo-shadow-1), inset 0 0 0 1px var(--pxo-line);
+  transition: translate var(--pxo-med) var(--pxo-ease), box-shadow var(--pxo-med) var(--pxo-ease);
+}
+%MetadataSimplePosterCard-image > *,
+%MetadataSimplePosterCard-image img {
+  border-radius: inherit;
+}
+/* Hover ring is drawn inside the poster: Plex's row scrollers clip anything
+   outside the card, and there are only 4px above it. */
+%MetadataSimplePosterCard-image { position: relative; }
+%MetadataSimplePosterCard-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 2px var(--pxo-a3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--pxo-med) var(--pxo-ease);
+}
+
+%PosterCard-card:hover %MetadataSimplePosterCard-image,
+%MetadataSimplePosterCard-card:hover %MetadataSimplePosterCard-image,
+%PosterCardLink-link:focus-visible ~ %MetadataSimplePosterCard-image {
+  translate: 0 -3px;
+  box-shadow: var(--pxo-shadow-2);
+}
+%PosterCard-card:hover %MetadataSimplePosterCard-image::after,
+%MetadataSimplePosterCard-card:hover %MetadataSimplePosterCard-image::after,
+%PosterCardLink-link:focus-visible ~ %MetadataSimplePosterCard-image::after {
+  opacity: 1;
+}
+
+/* Plex's hover overlay: soften it and tint toward the accent. */
+%PosterCardLink-link {
+  border-radius: var(--pxo-radius) !important;
+  transition: translate var(--pxo-med) var(--pxo-ease), background var(--pxo-med) var(--pxo-ease) !important;
+}
+%PosterCard-card:hover %PosterCardLink-link,
+%MetadataSimplePosterCard-card:hover %PosterCardLink-link {
+  translate: 0 -3px;
+  background: linear-gradient(0deg, rgba(7, 8, 12, 0.55), rgba(7, 8, 12, 0) 55%) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+%PosterCardLink-link * { border-color: transparent !important; }
+
+/* Progress bar sits inside the bottom of the image. */
+%MetadataPosterCardProgressBar-progress {
+  left: 8px !important;
+  right: 8px !important;
+  width: auto !important;
+  bottom: 8px !important;
+  height: 4px !important;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: translate var(--pxo-med) var(--pxo-ease);
+}
+%PosterCard-card:hover %MetadataPosterCardProgressBar-progress,
+%MetadataSimplePosterCard-card:hover %MetadataPosterCardProgressBar-progress {
+  translate: 0 -3px;
+}
+%MetadataPosterCardProgressBar-track { background: rgba(255, 255, 255, 0.22) !important; }
+%MetadataPosterCardProgressBar-bar {
+  background: var(--pxo-grad) !important;
+  border-radius: 4px;
+}
+
+/* Watched / unwatched-count badges. The offset is for full-size cards in
+   rows and grids; list views keep Plex's own placement. */
+%MetadataPosterListItem-card %MetadataPosterCardBadge-badge {
+  top: 8px !important;
+  right: 8px !important;
+}
+%MetadataPosterCardBadge-badge {
+  transition: translate var(--pxo-med) var(--pxo-ease);
+}
+%MetadataPosterCardBadge-badgeBackground {
+  border-radius: 99px !important;
+  background: var(--pxo-glass-strong) !important;
+  box-shadow: inset 0 0 0 1px var(--pxo-line-strong);
+}
+%MetadataPosterCardBadge-badge svg { color: var(--pxo-good) !important; }
+%PosterCard-card:hover %MetadataPosterCardBadge-badge,
+%MetadataSimplePosterCard-card:hover %MetadataPosterCardBadge-badge {
+  translate: 0 -3px;
+}
+
+/* Titles under the card */
+%MetadataPosterCardTitle-title {
+  font: 500 13.5px/1.35 var(--pxo-font) !important;
+  color: var(--pxo-fg-3) !important;
+  text-align: left !important;
+  padding: 0 2px;
+}
+a%MetadataPosterCardTitle-title:first-of-type,
+[data-testid="metadataTitleLink"] {
+  margin-top: 6px;
+  color: var(--pxo-fg) !important;
+  font-weight: 600 !important;
+}
+a%MetadataPosterCardTitle-title:hover,
+%MetadataPosterCardTitle-title a:hover {
+  color: var(--pxo-a1) !important;
+  text-decoration: none !important;
+}
+
+
+/* Play circle shown on hover (Plex hard-codes its yellow here). */
+%PlayButton-playCircle {
+  background: var(--pxo-grad) !important;
+  color: var(--pxo-on-a1) !important;
+  box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--pxo-a2) 80%, transparent);
+  transition: scale var(--pxo-fast) var(--pxo-ease) !important;
+}
+%PlayButton-playCircle svg { fill: currentColor; color: inherit !important; }
+%PosterCardLink-link:hover %PlayButton-playCircle,
+%PlayButton-playCircle:hover { scale: 1.08; }

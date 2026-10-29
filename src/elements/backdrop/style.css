@@ -1,0 +1,85 @@
+%FullPageBackground-backgroundContainer {
+  background: var(--pxo-ink-0) !important;
+}
+
+/* Plex's own item backdrop (details pages): dimmed and faded into the ink. */
+%FullPageBackground-backgroundContainer > div:not(.pxo-backdrop) {
+  opacity: 0.55;
+  transition: opacity var(--pxo-slow) var(--pxo-ease), visibility 0s linear;
+}
+/* Once our own art is showing, Plex's blurred copy is hidden outright (after
+   its fade) so it is not painted underneath. data-pxo-art is set by index.js. */
+html[data-pxo-art="1"] %FullPageBackground-backgroundContainer > div:not(.pxo-backdrop) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--pxo-slow) var(--pxo-ease), visibility 0s linear var(--pxo-slow);
+}
+/* Plex lays a noise PNG over its backdrop (the second child); drop it. Matched
+   by position: a [style*=...] selector would be re-checked on every inline
+   style change Plex makes, and its virtual lists make many. */
+%FullPageBackground-backgroundContainer > div:not(.pxo-backdrop) > div + div {
+  display: none;
+}
+%FullPageBackground-backgroundContainer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(7, 8, 12, 0.94) 0%, rgba(7, 8, 12, 0.7) 38%, rgba(7, 8, 12, 0.12) 80%),
+    linear-gradient(0deg, var(--pxo-ink-0) 4%, rgba(7, 8, 12, 0.55) 40%, rgba(7, 8, 12, 0) 70%);
+}
+html[data-pxo-ambient="0"] %FullPageBackground-backgroundContainer > div:not(.pxo-backdrop) {
+  display: none;
+}
+
+.pxo-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity var(--pxo-slow) var(--pxo-ease);
+}
+.pxo-backdrop.is-active { opacity: 1; }
+html[data-pxo-ambient="0"] .pxo-backdrop { display: none; }
+
+/* Opacity-only crossfade on composited layers: no scale, no blend modes, no
+   filters, so the fade costs no repaints. */
+.pxo-backdrop-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 700ms var(--pxo-ease);
+}
+.pxo-backdrop-layer.is-on { opacity: 0.9; }
+.pxo-backdrop-layer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.pxo-backdrop-tint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 0% 0%, var(--pxo-tl, transparent), transparent 60%),
+    radial-gradient(120% 90% at 100% 100%, var(--pxo-br, transparent), transparent 60%);
+  opacity: 0.16;
+}
+
+.pxo-backdrop-shade {
+  position: absolute;
+  inset: 0;
+  background: var(--pxo-ink-0);
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* On home the backdrop only covers the top of the window; rows sit on ink. */
+html[data-pxo-route="home"] %FullPageBackground-backgroundContainer::after {
+  background:
+    linear-gradient(90deg, rgba(7, 8, 12, 0.88) 0%, rgba(7, 8, 12, 0.35) 50%, rgba(7, 8, 12, 0.05) 100%),
+    linear-gradient(0deg, var(--pxo-ink-0) 22%, rgba(7, 8, 12, 0.7) 45%, rgba(7, 8, 12, 0) 78%);
+}
